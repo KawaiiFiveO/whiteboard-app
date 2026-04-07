@@ -1,3 +1,19 @@
+:root {
+    --bg-color: #ffffff;
+    --toolbar-bg: #f5f5f5;
+    --text-color: #333333;
+    --button-bg: #007BFF;
+    --canvas-filter: none;
+}
+
+body.dark-mode {
+    --bg-color: #121212;
+    --toolbar-bg: #1e1e1e;
+    --text-color: #e0e0e0;
+    --button-bg: #3700B3;
+    --canvas-filter: invert(1) hue-rotate(180deg); /* This makes black look white and keeps colors correct */
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -9,32 +25,35 @@ body, html {
     height: 100%;
     display: flex;
     flex-direction: column;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease; /* Smooth transition */
 }
 
 .toolbar {
     display: flex;
     justify-content: center;
     padding: 10px;
-    background-color: #f5f5f5;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: var(--toolbar-bg);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     align-items: center;
 }
 
 canvas {
-    width: 100vw; /* Full width of viewport */
-    height: calc(100vh - 50px); /* Full height minus toolbar */
-    border: 0;
-    outline: 2px solid #000;
+    width: 100vw;
+    height: calc(100vh - 50px);
+    background-color: white; /* Always white underlying data */
+    filter: var(--canvas-filter); /* This is the magic part */
     display: block;
     cursor: crosshair;
-    touch-action: none; /* Prevents the default touch actions like scrolling */
+    touch-action: none;
 }
 
 button {
     margin: 0 10px;
     padding: 10px 20px;
     border: none;
-    background-color: #007BFF;
+    background-color: var(--button-bg);
     color: white;
     font-size: 16px;
     cursor: pointer;
